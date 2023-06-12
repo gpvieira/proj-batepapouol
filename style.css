@@ -110,3 +110,6 @@ footer {
     color: #AAAAAA;
 }
 
+body, input {
+    font-family: 'Roboto', sans-serif;
+}

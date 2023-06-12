@@ -32,7 +32,7 @@ function renderizarResposta(resposta){
 
         divMensagens.innerHTML +=
         `
-        <div class="mensagem"><p><span class="fonte-time">(${arrayMensagens[i].time})</span> <b>${arrayMensagens[i].from}</b> para <b>${arrayMensagens[i].to}</b>: ${arrayMensagens[i].text}</p></div>
+        <div class="mensagem" data-test="message"><p><span class="fonte-time">(${arrayMensagens[i].time})</span> <b>${arrayMensagens[i].from}</b> para <b>${arrayMensagens[i].to}</b>: ${arrayMensagens[i].text}</p></div>
         
         `
         } 
