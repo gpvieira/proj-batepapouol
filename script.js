@@ -15,7 +15,7 @@ promessa.then(renderizarResposta)
 promessa.catch(perguntarNovamente)
 
 function renderizarResposta(resposta){
-    console.log(resposta.status)
+    console.log(resposta)
     let promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
     promessa.then(renderizarMensagens)
 
@@ -76,6 +76,8 @@ function perguntarNovamente() {
 }
 
 setInterval(permaneceOnline, 5000)
+
+setInterval(renderizarResposta, 3000)
 
 function permaneceOnline() {
     
