@@ -71,7 +71,7 @@ footer {
 .digitar-msg {
     width: 100%;
     height: 100%;
-    font-style: italic;
+    font-style: normal;    
     font-weight: 400;
     font-size: 18px;
     line-height: 21px;
@@ -79,6 +79,11 @@ footer {
     align-items: center;
     color: #000000;
     border: 0px;
+}
+
+.digitar-msg::-webkit-input-placeholder{
+    font-style: italic;
+    color: #000000;
 }
 
 .digitar-msg:focus {
