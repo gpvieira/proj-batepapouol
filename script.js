@@ -53,7 +53,7 @@ function enviarMensagem(){
 
     if (mensagemASerEnviada !== '' && mensagemASerEnviada !== null) {
     let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objetoASerEnviado)
-    promessa.then(inputMensagem.value = '', renderizarResposta)
+    promessa.then(renderizarResposta)
     promessa.catch(atualizar)
     }
 }
@@ -99,3 +99,6 @@ inputEnter.addEventListener('keyup', function(e){
     inputEnter.value = '';
   }
 });
+
+const elementoQueQueroQueApareca = document.querySelector('.mensagem')
+elementoQueQueroQueApareca.scrollIntoView();
