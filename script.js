@@ -22,18 +22,30 @@ function perguntarNovamente() {
 
     nomeUsuario = prompt('Qual é o seu nome?')
 
-    let objetoUsuario = 
+    objetoUsuario = 
     {
     name: nomeUsuario
     }
 
-    let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', objetoUsuario)
+    promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', objetoUsuario)
 
     promessa.then(renderizarResposta)
     promessa.catch(perguntarNovamente)
 
     function renderizarResposta(resposta){
         console.log(resposta.status)
+    }
+}
+
+setInterval(permaneceOnline, 5000)
+
+function permaneceOnline() {
+    
+    let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', objetoUsuario)
+    promessa.then(renderizarStatus)
+
+    function renderizarStatus(resposta) {
+        console.log(resposta)
     }
 
 }
