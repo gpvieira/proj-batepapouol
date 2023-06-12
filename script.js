@@ -1,8 +1,9 @@
 axios.defaults.headers.common['Authorization'] = 'aluW4tSyFUpSO8EQrjs9k6wI'
 
-
-
 let nomeUsuario = prompt('Qual é o seu nome?')
+while (nomeUsuario === '' || nomeUsuario === null){
+nomeUsuario = prompt('Digite um nome válido')
+}
 
 let objetoUsuario = 
 {
@@ -59,10 +60,14 @@ function enviarMensagem(){
 function perguntarNovamente() {
 
     nomeUsuario = prompt('Digite outro nome, pois esse já está em uso')
+    
+    while (nomeUsuario === '' || nomeUsuario == null) {
+        nomeUsuario = prompt('Digite um nome válido')
+    }
 
     objetoUsuario = 
     {
-    name: nomeUsuario
+        name: nomeUsuario
     }
 
     promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', objetoUsuario)
