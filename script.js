@@ -15,16 +15,16 @@ let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participant
 promessa.then(renderizarResposta)
 promessa.catch(perguntarNovamente)
 
-function renderizarResposta(resposta){
-    console.log(resposta)
+function renderizarResposta(){
     let promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
     promessa.then(renderizarMensagens)
 
     function renderizarMensagens(mensagens){
-        console.log(mensagens)
-        arrayMensagens = mensagens.data
-        console.log(arrayMensagens)
 
+        console.log('Renderizar mensagens, atualizando a cada 3s')
+
+        arrayMensagens = mensagens.data
+        
         let divMensagens = document.querySelector('main')
 
         divMensagens.innerHTML = ''
@@ -43,8 +43,7 @@ function renderizarResposta(resposta){
 function enviarMensagem(){
     let inputMensagem = document.querySelector('.digitar-msg')
     let mensagemASerEnviada = inputMensagem.value
-    console.log(mensagemASerEnviada)
-
+    
     let objetoASerEnviado = {
         from: nomeUsuario,
 	    to: "Todos",
@@ -52,9 +51,11 @@ function enviarMensagem(){
 	    type: "message"
     }
 
+    if (mensagemASerEnviada !== '' && mensagemASerEnviada !== null) {
     let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objetoASerEnviado)
-    promessa.then(renderizarResposta)
+    promessa.then(inputMensagem.value = '', renderizarResposta)
     promessa.catch(atualizar)
+    }
 }
 
 function perguntarNovamente() {
@@ -74,25 +75,15 @@ function perguntarNovamente() {
 
     promessa.then(renderizarResposta)
     promessa.catch(perguntarNovamente)
-
-    function renderizarResposta(resposta){
-        console.log(resposta.status)
-    }
 }
 
 setInterval(permaneceOnline, 5000)
 
 setInterval(renderizarResposta, 3000)
 
-function permaneceOnline() {
-    
+function permaneceOnline() {    
     let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', objetoUsuario)
-    promessa.then(renderizarStatus)
-
-    function renderizarStatus(resposta) {
-        console.log(resposta)
-    }
-
+    promessa.then(console.log('Permanecer online, atualizando a cada 5s'))
 }
 
 function atualizar() {
@@ -100,5 +91,11 @@ function atualizar() {
 }
 
 
-
-
+const inputEnter = document.querySelector('.digitar-msg');
+inputEnter.addEventListener('keyup', function(e){
+  var key = e.which || e.keyCode;
+  if (key == 13) {
+    enviarMensagem()
+    inputEnter.value = '';
+  }
+});
