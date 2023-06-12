@@ -16,6 +16,29 @@ promessa.catch(perguntarNovamente)
 
 function renderizarResposta(resposta){
     console.log(resposta.status)
+    let promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages')
+    promessa.then(renderizarMensagens)
+
+    function renderizarMensagens(mensagens){
+        console.log(mensagens)
+        arrayMensagens = mensagens.data
+        console.log(arrayMensagens)
+
+        let divMensagens = document.querySelector('main')
+
+        for( i = 0; i < arrayMensagens.length; i++ ){
+
+        divMensagens.innerHTML +=
+        `
+        <div class="mensagem"><p><span class="fonte-time">(${arrayMensagens[i].time})</span> <b>${arrayMensagens[i].from}</b> para <b>${arrayMensagens[i].to}</b>: ${arrayMensagens[i].text}</p></div>
+        
+        `
+
+        } 
+    }
+
+    
+
 }
 
 function perguntarNovamente() {
