@@ -40,6 +40,19 @@ function renderizarResposta(){
     }
 }
 
+function renderizarResposta2() {
+    renderizarResposta()
+    let inputMensagem = document.querySelector('.digitar-msg')
+    inputMensagem.value = '';
+
+    let elementoQueQueroQueApareca = document.querySelector('.mensagem:nth-child(100)')
+    
+    console.log(elementoQueQueroQueApareca)
+
+    elementoQueQueroQueApareca.scrollIntoView();
+
+}
+
 function enviarMensagem(){
     let inputMensagem = document.querySelector('.digitar-msg')
     let mensagemASerEnviada = inputMensagem.value
@@ -53,7 +66,7 @@ function enviarMensagem(){
 
     if (mensagemASerEnviada !== '' && mensagemASerEnviada !== null) {
     let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objetoASerEnviado)
-    promessa.then(renderizarResposta)
+    promessa.then(renderizarResposta2)
     promessa.catch(atualizar)
     }
 }
@@ -100,5 +113,3 @@ inputEnter.addEventListener('keyup', function(e){
   }
 });
 
-const elementoQueQueroQueApareca = document.querySelector('.mensagem')
-elementoQueQueroQueApareca.scrollIntoView();
