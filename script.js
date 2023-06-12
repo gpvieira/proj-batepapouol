@@ -26,6 +26,8 @@ function renderizarResposta(resposta){
 
         let divMensagens = document.querySelector('main')
 
+        divMensagens.innerHTML = ''
+
         for( i = 0; i < arrayMensagens.length; i++ ){
 
         divMensagens.innerHTML +=
@@ -33,12 +35,25 @@ function renderizarResposta(resposta){
         <div class="mensagem"><p><span class="fonte-time">(${arrayMensagens[i].time})</span> <b>${arrayMensagens[i].from}</b> para <b>${arrayMensagens[i].to}</b>: ${arrayMensagens[i].text}</p></div>
         
         `
-
         } 
     }
+}
 
-    
+function enviarMensagem(){
+    let inputMensagem = document.querySelector('.digitar-msg')
+    let mensagemASerEnviada = inputMensagem.value
+    console.log(mensagemASerEnviada)
 
+    let objetoASerEnviado = {
+        from: nomeUsuario,
+	    to: "Todos",
+	    text: mensagemASerEnviada,
+	    type: "message"
+    }
+
+    let promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objetoASerEnviado)
+    promessa.then(renderizarResposta)
+    promessa.catch(atualizar)
 }
 
 function perguntarNovamente() {
@@ -71,6 +86,10 @@ function permaneceOnline() {
         console.log(resposta)
     }
 
+}
+
+function atualizar() {
+    window.location.reload()
 }
 
 
