@@ -58,7 +58,7 @@ function enviarMensagem(){
 
 function perguntarNovamente() {
 
-    nomeUsuario = prompt('Qual é o seu nome?')
+    nomeUsuario = prompt('Digite outro nome, pois esse já está em uso')
 
     objetoUsuario = 
     {
